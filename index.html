@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electoral Information Integrity Monitoring | UC Berkeley Research</title>
+    <meta name="description"
+      content="A defensive detection research program monitoring coordinated information operations during the 2026 United States midterm election and the results period that follows. University of California, Berkeley." />
+    <link rel="canonical" href="https://oamresearch.berkeley.help/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="icon" sizes="32x32" href="./favicon-32x32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap row">
+        <div class="brand">
+          <span class="brand-mark">EI²M</span>
+          <div>
+            <strong>Electoral Information Integrity Monitoring</strong>
+            <span class="brand-sub">A research program on defensive detection of coordinated information operations</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#questions">Research questions</a>
+          <a href="#methods">Methods</a>
+          <a href="#ethics">Ethics</a>
+          <a href="#team">Team</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker">University of California, Berkeley · 2026</p>
+        <p class="independent-note">An independent research project. This is not an official UC Berkeley website.</p>
+        <h1>A detection study of coordinated information operations during the 2026 United States midterm election and the results period that follows.</h1>
+        <p class="lede">
+          The 2026 United States midterm elections are held on November 3. The 2020 and
+          2024 cycles documented a stable set of coordinated operations on American
+          social media: counterfeit "official results" livestreams that funnel viewers
+          into donation scams, cloned candidate videos, synthetic-media impersonation of
+          candidates and election officials, and coordinated rumor cascades aimed at
+          counting and certification. These operations concentrate in the days after
+          election night, while results are still being counted and before
+          certification, when official outcomes are unresolved and counter-speech is
+          hardest. TikTok, YouTube, X, and Instagram are four of the most-used
+          platforms in the country, and independent measurement of these operations
+          during the results period is currently difficult. This study builds and
+          validates a read-only detection methodology for these operation classes,
+          using the TikHub Academic API, which provides a unified cross-platform schema
+          and reproducible, citable snapshots for publication-bound academic research.
+        </p>
+        <div class="hero-facts">
+          <div><strong>Window</strong><span>Study: Sept 1 – Dec 31, 2026; live: Nov 3–30</span></div>
+          <div><strong>Surfaces</strong><span>Public TikTok, YouTube, X &amp; Instagram content</span></div>
+          <div><strong>Posture</strong><span>Read-only, defensive, aggregate-only exports</span></div>
+        </div>
+      </div>
+    </section>
+
+    <main class="wrap">
+      <section id="about">
+        <h2>About the study</h2>
+        <p>
+          Federal and state election officials treat coordinated disinformation as a
+          first-order threat to the 2026 midterms. The operations documented in the
+          2020 and 2024 cycles share a common structure: counterfeit official-results
+          broadcasts monetized through donation scams, coordinated rumor cascades about
+          counting and certification, synthetic impersonation of candidates and
+          election officials, and synthetic narratives amplified by inauthentic
+          engagement. They concentrate in the results period between election night and
+          certification, when official outcomes are unresolved and counter-speech by
+          campaigns and officials is at its weakest.
+        </p>
+        <p>
+          This study is the United States arm of the Electoral Information Integrity
+          Monitoring program; the program's first study monitors Brazil's 2026 runoff
+          (<a href="https://oam.berkeley.help">oam.berkeley.help</a>). The goal is to
+          close the measurement gap on the platforms where these operations are least
+          visible to independent researchers. We combine lawful access to public
+          content through the TikHub Academic API with transparent, auditable detectors
+          adapted from Vigia, our prototype monitoring system built for the Brazilian
+          election. The intended contribution is a validated detection method that
+          civil-society monitors in other democracies can reuse.
+        </p>
+      </section>
+
+      <section id="questions">
+        <h2>Research questions</h2>
+        <ol class="rq">
+          <li><strong>Volume and timing.</strong> How does the volume and timing of
+            election-related public content on TikTok, YouTube, X, and Instagram shift
+            across election night and the results period, and which topics dominate each
+            phase?</li>
+          <li><strong>Cross-surface diffusion.</strong> How quickly do documented
+            operation classes (counterfeit official broadcasts, coordinated rumor
+            cascades about counting and certification, synthetic-candidate
+            impersonation, donation-scam funnels) move between the four platforms, and
+            does diffusion accelerate while results remain unsettled?</li>
+          <li><strong>Detection validity.</strong> What precision and recall do
+            rule-based and model-assisted detection methods achieve against
+            researcher-verified ground truth for each operation class, and where do
+            they fail?</li>
+        </ol>
+      </section>
+
+      <section id="methods">
+        <h2>Methods</h2>
+        <p>
+          The study runs in three phases: instrument development (through
+          November 2, 2026), live measurement during election night and the results
+          period (November 3–30, 2026), and validation and write-up (December 2026
+          through early 2027). All collection runs through the TikHub Academic API
+          under the program's terms.
+        </p>
+        <ul>
+          <li><strong>Collection.</strong> Read-only TikHub Academic API queries in
+            English (and Spanish where the API permits): keyword and hashtag panels
+            (stop the count, rigged election, fake results, certification, candidate
+            names, and swing-state county names), target panels of public accounts
+            documented by US fact-checkers and election officials, and video and post
+            search endpoints for each platform. TikHub's unified schema delivers every
+            export as CSV, JSON, JSONL, or Parquet, and exact slices can be re-requested
+            later so reviewers can reproduce published results. The study window runs
+            September 1 through December 31, 2026, with September–November 2024 as a
+            historical baseline covering the most recent general-election cycle.</li>
+          <li><strong>Detection.</strong> Transparent detectors: near-duplicate video
+            hashing, near-duplicate text clustering, coordinated-timing cascades,
+            impersonation heuristics, and audience-anomaly signals. Flags from our
+            external livestream monitoring (Vigia, covering Twitch, Kick, and YouTube)
+            are used as seeds to find cross-posted copies on the four TikHub platforms.
+            No generative models are used, and every verdict is inspectable.</li>
+          <li><strong>Ground truth.</strong> Stratified samples of flagged clusters are
+            independently coded against a published codebook. We report precision and
+            recall per operation class, with detection latency for the live window.</li>
+          <li><strong>Analysis.</strong> Volume curves by class and window, network
+            analysis of cross-account and cross-platform content reuse, monetization-path
+            analysis of donation and payment links in counterfeit broadcasts, and
+            detector evaluation.</li>
+        </ul>
+      </section>
+
+      <section id="ethics">
+        <h2>Data protection &amp; ethics</h2>
+        <ul>
+          <li><strong>Read-only charter.</strong> No posting, no account interaction, and
+            no deanonymization of private individuals. Analysis is restricted to public
+            content and platform-provided metadata.</li>
+          <li><strong>Program discipline.</strong> All queries execute under the TikHub
+            Academic Research Program terms, scoped to this approved project. Records are
+            held in access-controlled project storage, and only aggregate results leave
+            the analysis environment. Raw content is not redistributed.</li>
+          <li><strong>Human subjects.</strong> The study analyzes public content at the
+            aggregate level and does not profile individuals. IRB guidance is being sought
+            through UC Berkeley's Office for the Protection of Human Subjects.</li>
+          <li><strong>Legal context.</strong> Research use complies with each platform's
+            terms of service as accessed through TikHub's licensed API infrastructure,
+            and with applicable US research-conduct requirements for analysis of
+            publicly available data.</li>
+          <li><strong>Outputs.</strong> Open working papers, a methods paper on detector
+            validation, and aggregated artifacts shared with US fact-checking and
+            election-integrity organizations.</li>
+        </ul>
+      </section>
+
+      <section id="team">
+        <h2>Team</h2>
+        <div class="team-card">
+          <div class="avatar">E</div>
+          <div>
+            <strong>Eric Hovagim</strong>, Lead Researcher
+            <p class="muted">
+              Department of Industrial Engineering and Operations Research (IEOR),
+              College of Engineering, University of California, Berkeley. His work
+              applies operations-research and machine-learning methods to detection
+              problems in large-scale information systems. He built Vigia, the
+              prototype monitoring system this program extends.
+            </p>
+          </div>
+        </div>
+        <p class="muted small">Collaborators may be added through the TikHub academic program verification process.</p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:ehovagim20@berkeley.edu">ehovagim20@berkeley.edu</a><br />
+          University of California, Berkeley<br />
+          For correspondence regarding this research program.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p>
+          © 2026 Eric Hovagim. This is an independent research project page. It is not an official
+          website of the University of California, Berkeley; the university's name is used solely to
+          state the researcher's affiliation.
+        </p>
+        <p>
+          Sister study: coordinated information operations during Brazil's 2026 election runoff,
+          <a href="https://oam.berkeley.help">oam.berkeley.help</a>.
+        </p>
+        <p>
+          Instruments: the US query dictionary, codebook, and detection methods will be released
+          publicly alongside the working paper; the program's Brazil instruments are public at
+          <a href="https://github.com/ehovagim/brazil-2026-detection-instruments">github.com/ehovagim/brazil-2026-detection-instruments</a>.
+        </p>
+        <p>
+          Access request: TikHub Academic Research Program (TikTok, YouTube, X, Instagram).
+          Status: application prepared October 30, 2026; submission in progress.
+          Application reference: Electoral Information Integrity Monitoring, United States 2026
+          midterm election and results period.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
